@@ -40,6 +40,7 @@ __Process Control Block__ : Process state를 저장하는 data structure.
 > System-wide table of PCB : Process table
 
 ### 4.1.3. State transition diagram
+![State transition diagram](./image.png)
 <img src="./image.png", height="100px", width="100px">
 1) Ready > Running : Dispatch
 2) Running > Ready : Interrupted (Preemptive, Hardware Interrupt, Asynchronous Blocking)
