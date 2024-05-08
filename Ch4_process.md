@@ -287,6 +287,7 @@ __Selected Pthread Functions__
 > pthread_yield()   : Release the CPU
 >![Pthreads Programming Model](pthread.png)
 
+> Pthread Example
 >   /* Example of a simple Pthread program */
 >   #include <stdio.h>
 >   #include <pthread.h>
@@ -304,6 +305,7 @@ __Selected Pthread Functions__
 >       return NULL;
 >   }
 
+> Main
 >   /* main program */
 >   int main(void)
 >   {
