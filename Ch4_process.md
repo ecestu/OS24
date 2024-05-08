@@ -2,14 +2,15 @@
 
 ## 4.1. Process Concepts
 ### 4.1.1. What is a process?
-> __Important Concepts__ : "Decomposition"
--> Solve a hard problem by breaking it into smaller, easier problems that can be solved separately.
+> __Important Concepts__ 
+- "Decomposition" -> Solve a hard problem by breaking it into smaller, easier problems that can be solved separately.
 1) Program : A set of instructions that specify the computation to be performed. (정적인 Binary file)
 2) Process : Program in execution. An execution stream in the context of a particular process state. (동적인 실행 중인 프로그램)    
 3) Process State : Everything that can affect, or be affected by the process. ex) Code, Data values, Open files, etc.
 4) Execution Stream : A sequence of instructions executed in a process state. ex) Key simplifying feature of a process.
 
-> __Process State(or context)__ : PCB(Process Control Block)로 관리함.
+> __Process State(or context)__ 
+> - PCB(Process Control Block)로 관리함.
 1) Memory context : Code, Data, Stack, Heap
 2) Hardware context : Program Counter, Stack Pointer, I/O Registers, etc.
 3) System context : Open files, Process table, Page table, etc.
@@ -33,11 +34,13 @@
 2) Run time entity : Process > Process를 통해 Decomposition을 구현함. 효율적인 Resource 사용을 위해 OS가 관리함.
 
 ### 4.1.2. Process Control Block
-> __Process Control Block__ : Process state를 저장하는 data structure.
+> __Process Control Block__ 
+> - Process state를 저장하는 data structure.
 1) Execution state : Program counter, Stack pointer, Registers, etc.
 2) Scheduling information : Priority, Scheduling queue pointers, etc.
 3) Accounting and other misc. information : Open files
-> System-wide table of PCB : Process table > Heap에 저장됨. (size 변동 가능)
+> System-wide table of PCB
+> - Process table > Heap에 저장됨. (size 변동 가능)
 
 ### 4.1.3. State transition diagram
 ![State transition diagram](./state.png)
@@ -52,7 +55,8 @@ Running process : CPU를 사용 중인 Process
 
 ## 4.2. Process Scheduling
 ### 4.2.1. Process Scheduling Goals
-__Process Scheduling Goals__ : 여러 Process들이 CPU를 공유하면서 효율적으로 사용할 수 있도록 하는 것.
+> __Process Scheduling Goals__ 
+> - 여러 Process들이 CPU를 공유하면서 효율적으로 사용할 수 있도록 하는 것.
 
 __Constraints__
 1) Fair Scheduling : 모든 Process가 CPU를 공평하게 사용할 수 있도록.
@@ -63,7 +67,8 @@ __Separation of Policy and Mechanism__
 2) Mechanism : How to do > Dispatcher, Context switching
 
 ### 4.2.2. Dispatcher
-> __Dispatcher__ : Process를 CPU에 할당하는 OS의 component > Kernel function
+> __Dispatcher__ 
+> - Process를 CPU에 할당하는 OS의 component > Kernel function
 
 > loop forever {
 >    run the process for a while
@@ -71,22 +76,30 @@ __Separation of Policy and Mechanism__
 >    load state of another process
 >}
 
-> __Non-preemptive Dispatcher__ : Process가 Dispatcher를 깨울 것을 믿고 기다림.
-> __Preemptive Dispatcher__ : Timer interrupt를 통해 Process를 깨움.
+> __Non-preemptive Dispatcher__ 
+> - Process가 Dispatcher를 깨울 것을 믿고 기다림.
+
+> __Preemptive Dispatcher__
+> - Timer interrupt를 통해 Process를 깨움.
 
 ### 4.2.3. Kernel
-> __Kernel__ : OS의 핵심 부분. Process Scheduling, Memory Management, File System, etc.
-- PSW(Program Status Word)에 Mode bit 가 있음.
+> __Kernel__ 
+> - OS의 핵심 부분. Process Scheduling, Memory Management, File System, etc.
+>- PSW(Program Status Word)에 Mode bit 가 있음.
 
-> __Miss Conception__ : Process처럼 Kernel은 Active하고 Independent한 entity로 Thread control을 가짐. User process를 monitoring 하고 있음.
-> __In Reality__ : Kernel은 Kernel 함수와 ISR(Interrupt Service Routine)로 이루어진 Passive하고 Dependent한 entity로 User process에 의해 호출됨.
+> __Miss Conception__ 
+> - Process처럼 Kernel은 Active하고 Independent한 entity로 Thread control을 가짐. User process를 monitoring 하고 있음.
+> __In Reality__ 
+> - Kernel은 Kernel 함수와 ISR(Interrupt Service Routine)로 이루어진 Passive하고 Dependent한 entity로 User process에 의해 호출됨.
 ![Kernel Space and User Space](kernel.png)
-> __Kernel Space__ : Kernel이 실행되는 공간. system call을 통해 호출된 함수들의 공간.
+> __Kernel Space__ 
+> - Kernel이 실행되는 공간. system call을 통해 호출된 함수들의 공간.
 - Protected memory space
 - Full access to hardware
 - Elevated system state + Unrestricred memory access
 
-> __User Space__ : User process가 실행되는 공간. Kernel Space에 비해 제한된 System state 이다.
+> __User Space__ 
+> - User process가 실행되는 공간. Kernel Space에 비해 제한된 System state 이다.
 - A subset of the machine's available resources
 - Limited priivileges > unable to perform certain functions
 - Restricted system state + Restricted memory access
